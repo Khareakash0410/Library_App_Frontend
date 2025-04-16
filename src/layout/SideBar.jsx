@@ -14,24 +14,20 @@ import {toast} from "react-toastify";
 import { toggleAddNewAdminPopup, toggleSettingPopup } from "../store/slices/popUpSlice";
 import AddNewAdmin from "../popups/AddNewAdmin";
 import SettingPopup from "../popups/SettingPopup";
-import { useNavigate } from "react-router-dom";
 
 const SideBar = ({ isSideBarOpen, setIsSideBarOpen, setSelectedComponent }) => {
 
 const dispatch = useDispatch();
 const {addNewAdminPopup, settingPopup} = useSelector((state) => state.popup);
 const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
-const navigate = useNavigate();
   
   
 
 const handleLogout = () => {
   dispatch(logout());
-  dispatch(resetAuthSlice());
 };
 
 useEffect(() => {
-
   if(message) {
     toast.success(message);
     dispatch(resetAuthSlice());
@@ -41,10 +37,6 @@ useEffect(() => {
     dispatch(resetAuthSlice());
   };
 }, [dispatch, isAuthenticated, error, loading, message]);
-
-if(!isAuthenticated) {
-  navigate("/login")
-};
 
   return (
     <>
