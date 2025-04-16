@@ -36,7 +36,7 @@ useEffect(() => {
   }
 }, [dispatch, isAuthenticated, error, loading]);
 
-if(isAuthenticated && user) {
+if(isAuthenticated) {
   return <Navigate to={"/"} /> 
 };
 
@@ -92,7 +92,7 @@ return <>
       </div>
 
       <button type="submit" className="border-2 mt-5 border-black w-full font-semibold bg-black text-white py-2 rounded-lg hover:bg-white hover:text-black transition">
-        SIGN IN
+        {loading ? "LOGGING" : "SIGN IN"}
       </button>
     </form>
    </div>

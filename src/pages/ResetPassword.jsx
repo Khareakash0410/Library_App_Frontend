@@ -112,7 +112,7 @@ return <>
           className="border-2 mt-5 border-black w-full font-semibold bg-black text-white py-2 rounded-lg hover:bg-white hover:text-black transition"
           disabled={loading ? true : false}
         >
-           RESET PASSWORD
+          {loading ? "RESETTING" : "RESET PASSWORD"} 
         </button>
       </form>
     </div>

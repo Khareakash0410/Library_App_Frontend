@@ -8,10 +8,13 @@ const RecordBookPopup = ({bookId}) => {
 const dispatch = useDispatch();
 
 const [email, setEmail] = useState("");
+const [loading, setLoading] = useState(false);
 
 const handleRecordBook = (e) => {
   e.preventDefault();
-  dispatch(recordBorrowBook(email, bookId))
+  setLoading(true);
+  dispatch(recordBorrowBook(email, bookId));
+  setLoading(false);
 };
 
 
@@ -46,7 +49,7 @@ return (
                 className='px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800'
                 type='submit'
                 >
-                Record
+               {loading ? "Recording" : "Record"} 
               </button>
             </div>
 

@@ -11,10 +11,12 @@ const [author, setAuthor] = useState("");
 const [price, setPrice] = useState("");
 const [quantity, setQuantity] = useState("");
 const [description, setDescription] = useState("");
+const [loading, setLoading] = useState(false);
 
 
 const handleAddBook = (e) => {
  e.preventDefault();
+ setLoading(true)
  const formData = new FormData();
  formData.append("title", title);
  formData.append("author", author);
@@ -24,6 +26,7 @@ const handleAddBook = (e) => {
 
  dispatch(addBook(formData));
  dispatch(fetchAllBooks());
+ setLoading(false);
 };
 
 
@@ -107,7 +110,7 @@ return <>
                 className='px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800'
                 type='submit'
                 >
-                Add
+               {loading ? "Adding" : "Add"} 
               </button>
             </div>
 

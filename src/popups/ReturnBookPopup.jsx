@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {useDispatch} from "react-redux";
 import { returnBook } from '../store/slices/borrowSlice';
 import { toggleReturnBookPopup } from '../store/slices/popUpSlice';
@@ -7,12 +7,14 @@ import { toggleReturnBookPopup } from '../store/slices/popUpSlice';
 const ReturnBookPopup = ({bookId, email}) => {
 
 const dispatch = useDispatch();
+const [loading, setLoading] = useState(false);
 
 const handleReturnBook = (e) => {
   e.preventDefault();
-
+  setLoading(true);
   dispatch(returnBook(email, bookId));
   dispatch(toggleReturnBookPopup());
+  setLoading(false);
 };
 
 
@@ -48,7 +50,7 @@ return (
                  className='px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800'
                  type='submit'
                  >
-                 Return
+                {loading ? "Returning" : "Return"} 
                </button>
              </div>
  

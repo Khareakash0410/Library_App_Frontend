@@ -67,7 +67,7 @@ return <>
       </div>
 
       <button type="submit" className="border-2 mt-5 border-black w-full font-semibold bg-black text-white py-2 rounded-lg hover:bg-white hover:text-black transition">
-        Verify OTP
+       {loading ? "VERIFYING" : "VERIFY OTP"} 
       </button>
     </form>
    </div>

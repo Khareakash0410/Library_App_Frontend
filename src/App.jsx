@@ -19,6 +19,9 @@ const App = () => {
 
  const {user, isAuthenticated} = useSelector((state) => state.auth);
  const dispatch = useDispatch();
+
+
+
  useEffect(() =>{
   dispatch(getUser());
   dispatch(fetchAllBooks());
@@ -41,7 +44,7 @@ return (
        <Route path="/otp-verification/:email"  element={<OTP />}/>
        <Route path="/password/reset/:token"  element={<ResetPassword />}/>
      </Routes>
-     <ToastContainer theme="dark" />
+     <ToastContainer theme="dark" position="top-right"/>
   </Router>
   );
 };

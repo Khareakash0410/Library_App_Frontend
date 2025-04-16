@@ -124,7 +124,7 @@ return <>
              </button>
 
              <button type="submit" disabled={loading} className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800">
-               Add
+              {loading ? "Adding" : "Add"} 
              </button>
           </div>
 
