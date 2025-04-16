@@ -196,7 +196,6 @@ export const logout = () => async (dispatch) => {
       withCredentials: true,
     }).then(res => {
       dispatch(authSlice.actions.logoutSuccess(res.data.message));
-      dispatch(authSlice.actions.resetAuthSlice());
     }).catch(error => {
       dispatch(authSlice.actions.logoutFailed(error.response.data.message))
     })
