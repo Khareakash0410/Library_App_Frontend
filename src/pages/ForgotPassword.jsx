@@ -10,7 +10,7 @@ const ForgotPassword = () => {
 
 const [email, setEmail] = useState("");
 
-const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
+const {loading, error, message, isAuthenticated} = useSelector((state) => state.auth);
 
 const dispatch = useDispatch();
 

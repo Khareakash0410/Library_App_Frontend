@@ -10,18 +10,15 @@ const Login = () => {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 
-const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
+const {loading, error, message, isAuthenticated} = useSelector((state) => state.auth);
 
 const dispatch = useDispatch();
 
 const handleLogin = (e) => {
   e.preventDefault();
-
   const data = new FormData();
-
   data.append("email", email);
   data.append("password", password);
-
   dispatch(login(data));
 };
 

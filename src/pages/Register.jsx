@@ -18,7 +18,7 @@ const [avatar, setAvatar] = useState(null);
 const [avatarPreview, setAvatarPreview] = useState(null);
 const dispatch = useDispatch();
 
-const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
+const {loading, error, message, isAuthenticated} = useSelector((state) => state.auth);
 
 const navigateTo = useNavigate();
 
@@ -36,17 +36,12 @@ const handleImageChange = (e) => {
 
 const handleRegister = (e) => {
   e.preventDefault();
-  if (password.length < 8 || password.length > 16) {
-    return toast.error("Password must between 8 to 16 characters")
-  }
-  else {
     const data = new FormData();
     data.append("name", name);
     data.append("email", email);
     data.append("password", password);
     data.append("avatar", avatar);
     dispatch(register(data));
-  }
 };
 
 useEffect(() => {

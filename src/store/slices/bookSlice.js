@@ -38,6 +38,20 @@ const bookSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
        },
+       deleteBookRequest(state) {
+         state.loading = true;
+         state.error = null;
+         state.message = null;
+       },
+       deleteBookSuccess(state, action) {
+        state.loading = false;
+        state.message = action.payload.message;
+        state.books = state.books.filter((book) => book._id !== action.payload.bookId)
+       },
+       deleteBookFailed(state, action) {
+        state.loading = false;
+        state.error = action.payload;
+       },
 
        resetBookSlice(state) {
         state.error = null;
@@ -76,5 +90,15 @@ export const resetBookSlice = () => (dispatch) => {
   dispatch(bookSlice.actions.resetBookSlice());
 };
 
+export const deleteBook = (bookId) => async (dispatch) => {
+ dispatch(bookSlice.actions.deleteBookRequest());
+ await axios.delete(`https://library-app-272e.onrender.com/api/v1/book/delete/${bookId}`, {withCredentials: true, headers: {
+   "Content-Type": "application/json"
+ }}).then(res => {
+  dispatch(bookSlice.actions.deleteBookSuccess({message: res.data.message, bookId}));
+ }).catch(err => {
+  dispatch(bookSlice.actions.deleteBookFailed(err.response.data.message));
+ })
+};
 
 export default bookSlice.reducer;

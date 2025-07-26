@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import { updatePassword } from '../store/slices/authSlice';
 import settingIcon from "../assets/setting.png";
 import { toggleSettingPopup } from '../store/slices/popUpSlice';
-import {toast} from "react-toastify";
 
 const SettingPopup = () => {
 
@@ -18,17 +17,10 @@ const {loading} = useSelector((state) => state.auth);
 
 const handleUpdatePassword = (e) => {
   e.preventDefault();
-  if(newPassword.length < 8 || confirmNewPassword.length < 8 || newPassword.length > 16 || confirmNewPassword.length > 16) {
-    return toast.error("Password must between 8 to 16 characters");
-  };
-  if(newPassword !== confirmNewPassword) {
-    return toast.error("Password and Confirm password not match!")
-  };
   const data = new FormData();
   data.append("currentPassword", currentPassword);
   data.append("newPassword", newPassword);
   data.append("confirmNewPassword", confirmNewPassword);
-
   dispatch(updatePassword(data));
 };
 

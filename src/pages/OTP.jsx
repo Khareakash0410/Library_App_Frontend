@@ -12,7 +12,7 @@ const {email} = useParams();
 const [otp, setOtp] = useState("");
 
 const dispatch = useDispatch();
-const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
+const {loading, error, message, isAuthenticated} = useSelector((state) => state.auth);
 
 
 const handleOtpVerifictaion = (e) => {

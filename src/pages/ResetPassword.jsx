@@ -13,19 +13,13 @@ const [confirmPassword, setConfirmPassword] = useState("");
 
 const {token} = useParams();
 
-const {loading, error, message, user, isAuthenticated} = useSelector((state) => state.auth);
+const {loading, error, message, isAuthenticated} = useSelector((state) => state.auth);
 
 const dispatch = useDispatch();
 
 
 const handleResetPassword = (e) => {
   e.preventDefault();
-  if(password.length < 8 || confirmPassword.length < 8 || password.length > 16 || confirmPassword.length > 16) {
-    return toast.error("Password must between 8 to 16 characters");
-  };
-  if(password !== confirmPassword) {
-    return toast.error("Password and Confirm password not match!")
-  };
   const formData = new FormData();
   formData.append("password", password);
   formData.append("confirmPassword", confirmPassword);
