@@ -18,7 +18,7 @@ const dispatch = useDispatch();
 
 const {loading, error, message, books} = useSelector((state) => state.book);
 const {isAuthenticated, user} = useSelector((state) => state.auth);
-const {addBookPopup, readBookPopup, recordBookPopup, deleteBookPopup, booklIdToDelete} = useSelector((state) => state.popup);
+const {addBookPopup, readBookPopup, recordBookPopup, deleteBookPopup, bookIdToDelete} = useSelector((state) => state.popup);
 const {loading: borrowSliceLoading, error: borrowSliceError, message: borrowSliceMessage} = useSelector((state) => state.borrow);
 
 const [readBook, setReadBook] = useState({});
@@ -155,7 +155,7 @@ return <>
 {addBookPopup && (<AddBookPopup />) }
 {readBookPopup && (<ReadBookPopup book={readBook}/>) }
 {recordBookPopup && (<RecordBookPopup bookId={borrowBookId}/>) }
-{deleteBookPopup && (<DeleteBookPopup bookId={booklIdToDelete}/>) }
+{deleteBookPopup && (<DeleteBookPopup bookId={bookIdToDelete}/>) }
 
 </>;
 };
