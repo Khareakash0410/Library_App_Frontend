@@ -10,7 +10,6 @@ const popupSlice = createSlice({
         returnBookPopup: false,
         addNewAdminPopup: false,
         deleteBookPopup: false,
-        bookIdToDelete: null,
     },
     reducers: {
         toggleSettingPopup(state) {
@@ -33,7 +32,6 @@ const popupSlice = createSlice({
         },
         toggleDeleteBookPopup(state, action) {
           state.deleteBookPopup = !state.deleteBookPopup
-          state.bookIdToDelete = action?.payload || null;
         },
         closeAllpopup(state) {
             state.settingPopup = false
@@ -43,7 +41,6 @@ const popupSlice = createSlice({
             state.returnBookPopup = false;
             state.addNewAdminPopup = false;
             state.deleteBookPopup = false;
-            state.bookIdToDelete = null;
         },
     },
 });

@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import { deleteBook } from '../store/slices/bookSlice';
 import { toggleDeleteBookPopup } from '../store/slices/popUpSlice';
 

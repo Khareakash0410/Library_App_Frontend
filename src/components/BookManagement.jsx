@@ -18,11 +18,12 @@ const dispatch = useDispatch();
 
 const {loading, error, message, books} = useSelector((state) => state.book);
 const {isAuthenticated, user} = useSelector((state) => state.auth);
-const {addBookPopup, readBookPopup, recordBookPopup, deleteBookPopup, bookIdToDelete} = useSelector((state) => state.popup);
+const {addBookPopup, readBookPopup, recordBookPopup, deleteBookPopup} = useSelector((state) => state.popup);
 const {loading: borrowSliceLoading, error: borrowSliceError, message: borrowSliceMessage} = useSelector((state) => state.borrow);
 
 const [readBook, setReadBook] = useState({});
 const [borrowBookId, setBorrowBookId] = useState("");
+const [deleteBookId, setDeleteBookId] = useState("");
 const [searchedKeyword, setSearchedKeyword] = useState("");
 
 const openReadPopup = (id) => {
@@ -34,6 +35,11 @@ const openReadPopup = (id) => {
 const openRecorBookPopup = (bookId) => {
  setBorrowBookId(bookId);
  dispatch(toggleRecordBookPopup());
+};
+
+const openDeleteBookPopup = (bookId) => {
+  setDeleteBookId(bookId);
+  dispatch(toggleDeleteBookPopup());
 };
 
 const handleSearch = (e) => {
@@ -135,7 +141,7 @@ return <>
                  <td className="px-4 py-2 flex space-x-2 my-3 justify-center">
                   <BookA className="cursor-pointer" onClick={() => openReadPopup(book._id)}/>
                   <NotebookPen className="cursor-pointer" onClick={() => openRecorBookPopup(book._id)}/>
-                  <Trash2 className="text-red-500 cursor-pointer" onClick={() => toggleDeleteBookPopup(book._id)}/>
+                  <Trash2 className="text-red-500 cursor-pointer" onClick={() => openDeleteBookPopup(book._id)}/>
                  </td>
                 )
                 }
@@ -155,7 +161,7 @@ return <>
 {addBookPopup && (<AddBookPopup />) }
 {readBookPopup && (<ReadBookPopup book={readBook}/>) }
 {recordBookPopup && (<RecordBookPopup bookId={borrowBookId}/>) }
-{deleteBookPopup && (<DeleteBookPopup bookId={bookIdToDelete}/>) }
+{deleteBookPopup && (<DeleteBookPopup bookId={deleteBookId}/>) }
 
 </>;
 };
